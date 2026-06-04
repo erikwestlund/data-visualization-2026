@@ -1,0 +1,107 @@
+---
+title: "Open And Render Check"
+format:
+  html:
+    embed-resources: true
+    toc: true
+---
+
+```{r}
+#| include: false
+library(dplyr)
+library(ggplot2)
+```
+
+# Goal
+
+This notebook checks whether the basic course workflow is working.
+
+By the end, you should know that:
+
+- the project opens correctly
+- the setup chunk runs
+- R code chunks run
+- figures display
+- Quarto can render the notebook to HTML
+
+# Check The Project
+
+Confirm that R can see where this notebook is running.
+
+```{r}
+getwd()
+```
+
+You should be working somewhere inside the course project.
+
+# Check R Code
+
+Run a simple calculation.
+
+```{r}
+2 + 2
+```
+
+Create a small object.
+
+```{r}
+favorite_number <- 42
+favorite_number
+```
+
+# Check Data
+
+For the first day, we will use the built-in `mtcars` dataset so nothing has to be downloaded.
+
+```{r}
+mtcars |>
+  head()
+```
+
+```{r}
+mtcars |>
+  summarise(
+    rows = n(),
+    average_mpg = mean(mpg),
+    minimum_mpg = min(mpg),
+    maximum_mpg = max(mpg)
+  )
+```
+
+# Check Plotting
+
+Make a quick plot.
+
+```{r}
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(binwidth = 5) +
+  labs(
+    title = "Distribution of Fuel Efficiency",
+    x = "Miles per gallon",
+    y = "Number of cars"
+  )
+```
+
+# Render Check
+
+Now render the notebook.
+
+In RStudio or Positron, click the Render button.
+
+After rendering, confirm that:
+
+- an HTML file was created
+- the HTML file opens in a browser or viewer
+- the plot appears in the rendered file
+- the text and code output appear in the rendered file
+
+# Troubleshooting Notes
+
+Common problems:
+
+- The notebook was opened outside the course project.
+- R or Quarto is not installed correctly.
+- The first code chunk did not run.
+- The render failed because an earlier chunk had an error.
+
+When something fails, read the first error message carefully and fix that first.
