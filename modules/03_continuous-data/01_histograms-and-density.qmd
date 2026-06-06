@@ -30,8 +30,7 @@ We will use a simplified NHANES teaching file to ask:
 # Load Data
 
 ```{r}
-here::i_am("modules/03_continuous-data/01_histograms-and-density.qmd")
-nhanes_path <- here::here("data", "real", "nhanes_2021_2023_analysis.csv")
+nhanes_path <- "data/real/nhanes_2021_2023_analysis.csv"
 
 nhanes <- read_csv(nhanes_path, show_col_types = FALSE)
 

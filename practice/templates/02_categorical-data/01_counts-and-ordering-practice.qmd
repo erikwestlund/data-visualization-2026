@@ -20,8 +20,7 @@ Practice making categorical count plots and ordering categories deliberately.
 # Load Data
 
 ```{r}
-here::i_am("practice/templates/02_categorical-data/01_counts-and-ordering-practice.qmd")
-census_path <- here::here("data", "real", "census_state_race_ethnicity_long.csv")
+census_path <- "data/real/census_state_race_ethnicity_long.csv"
 
 census <- read_csv(census_path, show_col_types = FALSE)
 

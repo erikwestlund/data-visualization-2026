@@ -22,8 +22,7 @@ For each plot object, ask what changed from the previous object.
 # Load Data
 
 ```{r}
-here::i_am("practice/templates/01-workflow-and-basics/03_ggplot-basics-practice.qmd")
-prams_path <- here::here("data", "real", "prams_2011_selected.csv")
+prams_path <- "data/real/prams_2011_selected.csv"
 
 prams <- read_csv(prams_path, show_col_types = FALSE)
 

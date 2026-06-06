@@ -30,8 +30,7 @@ We will ask:
 # Load Data
 
 ```{r}
-here::i_am("modules/09_communication-polish/02_color-accessibility-and-highlighting.qmd")
-census_path <- here::here("data", "real", "census_state_race_ethnicity_long.csv")
+census_path <- "data/real/census_state_race_ethnicity_long.csv"
 
 census <- read_csv(census_path, show_col_types = FALSE)
 ```

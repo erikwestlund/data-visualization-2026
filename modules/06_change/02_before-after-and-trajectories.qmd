@@ -30,8 +30,7 @@ We will ask:
 # Load Data
 
 ```{r}
-here::i_am("modules/06_change/02_before-after-and-trajectories.qmd")
-diary_path <- here::here("data", "real", "migraine_headache_diary.csv")
+diary_path <- "data/real/migraine_headache_diary.csv"
 
 diary <- read_csv(diary_path, show_col_types = FALSE)
 ```

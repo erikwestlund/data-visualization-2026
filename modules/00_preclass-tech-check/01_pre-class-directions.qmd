@@ -99,7 +99,7 @@ Run this once in the R Console if you do not already have these packages install
 
 ```{r}
 #| eval: false
-install.packages(c("dplyr", "ggplot2", "readr", "stringr", "here"))
+install.packages(c("dplyr", "ggplot2", "readr", "stringr"))
 ```
 
 The setup check only uses `dplyr` and `ggplot2`, but installing the full set now will make later work smoother.

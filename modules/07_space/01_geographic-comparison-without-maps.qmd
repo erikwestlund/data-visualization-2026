@@ -30,8 +30,7 @@ We will ask:
 # Load Data
 
 ```{r}
-here::i_am("modules/07_space/01_geographic-comparison-without-maps.qmd")
-places_path <- here::here("data", "real", "places_county_core_measures_long.csv")
+places_path <- "data/real/places_county_core_measures_long.csv"
 
 places <- read_csv(places_path, show_col_types = FALSE)
 ```

@@ -38,8 +38,7 @@ We will use a cleaned public PRAMS dataset to ask three basic questions:
 # Load Data
 
 ```{r}
-here::i_am("modules/01-workflow-and-basics/02_first-visualization.qmd")
-prams_path <- here::here("data", "real", "prams_2011_selected.csv")
+prams_path <- "data/real/prams_2011_selected.csv"
 
 prams <- read_csv(prams_path, show_col_types = FALSE)
 

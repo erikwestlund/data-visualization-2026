@@ -20,8 +20,7 @@ Practice visualizing composition with proportions.
 # Load Data
 
 ```{r}
-here::i_am("practice/templates/02_categorical-data/02_composition-and-proportions-practice.qmd")
-census_path <- here::here("data", "real", "census_state_race_ethnicity_long.csv")
+census_path <- "data/real/census_state_race_ethnicity_long.csv"
 
 census <- read_csv(census_path, show_col_types = FALSE)
 

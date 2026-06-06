@@ -32,8 +32,7 @@ When you export a plot, you are deciding:
 # Build A Plot
 
 ```{r}
-here::i_am("modules/09_communication-polish/03_saving-visualizations.qmd")
-state_path <- here::here("data", "real", "state_population_ranks.csv")
+state_path <- "data/real/state_population_ranks.csv"
 
 states <- read_csv(state_path, show_col_types = FALSE)
 
@@ -61,7 +60,7 @@ The main `ggplot2` function for saving plots is `ggsave()`.
 ```{r}
 #| eval: false
 ggsave(
-  filename = here::here("figures", "top-states.png"),
+  filename = "figures/top-states.png",
   plot = p1,
   width = 7,
   height = 5,
@@ -84,9 +83,9 @@ Use formats based on where the plot is going.
 
 ```{r}
 #| eval: false
-ggsave(here::here("figures", "top-states.png"), p1, width = 7, height = 5, dpi = 300)
-ggsave(here::here("figures", "top-states.pdf"), p1, width = 7, height = 5)
-ggsave(here::here("figures", "top-states.svg"), p1, width = 7, height = 5)
+ggsave("figures/top-states.png", p1, width = 7, height = 5, dpi = 300)
+ggsave("figures/top-states.pdf", p1, width = 7, height = 5)
+ggsave("figures/top-states.svg", p1, width = 7, height = 5)
 ```
 
 # Size Is Part Of Design

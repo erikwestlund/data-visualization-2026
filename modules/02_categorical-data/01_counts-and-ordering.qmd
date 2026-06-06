@@ -28,8 +28,7 @@ We will use a cleaned Census race/ethnicity dataset to ask:
 # Load Data
 
 ```{r}
-here::i_am("modules/02_categorical-data/01_counts-and-ordering.qmd")
-census_path <- here::here("data", "real", "census_state_race_ethnicity_long.csv")
+census_path <- "data/real/census_state_race_ethnicity_long.csv"
 
 census <- read_csv(census_path, show_col_types = FALSE)
 

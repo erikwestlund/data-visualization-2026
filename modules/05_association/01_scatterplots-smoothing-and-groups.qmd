@@ -30,8 +30,7 @@ We will ask:
 # Load Data
 
 ```{r}
-here::i_am("modules/05_association/01_scatterplots-smoothing-and-groups.qmd")
-davis_path <- here::here("data", "real", "davis_height_weight.csv")
+davis_path <- "data/real/davis_height_weight.csv"
 
 davis <- read_csv(davis_path, show_col_types = FALSE)
 ```

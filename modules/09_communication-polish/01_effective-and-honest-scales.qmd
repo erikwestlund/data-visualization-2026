@@ -30,8 +30,7 @@ We will ask:
 # Load Data
 
 ```{r}
-here::i_am("modules/09_communication-polish/01_effective-and-honest-scales.qmd")
-flu_path <- here::here("data", "real", "flu_vaccination_age_time_clean.csv")
+flu_path <- "data/real/flu_vaccination_age_time_clean.csv"
 
 flu <- read_csv(flu_path, show_col_types = FALSE)
 ```

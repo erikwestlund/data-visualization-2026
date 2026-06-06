@@ -20,8 +20,7 @@ Practice making ranked categorical comparisons.
 # Load Data
 
 ```{r}
-here::i_am("practice/templates/02_categorical-data/03_ranked-comparisons-practice.qmd")
-population_path <- here::here("data", "real", "state_population_ranks.csv")
+population_path <- "data/real/state_population_ranks.csv"
 
 state_population <- read_csv(population_path, show_col_types = FALSE)
 

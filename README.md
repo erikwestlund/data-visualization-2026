@@ -4,7 +4,7 @@ This folder contains materials we'll be using daily in the course:
 
 * Slides (rendered HTML files)
 * Data sets referenced in class examples
-* Learning modules
+* Learning modules as editable notebooks and rendered HTML files
 * Practice templates
 
 Please note that this repository will likely be updated daily. 
@@ -21,6 +21,7 @@ Please note that this repository will likely be updated daily.
 - `data/`: course datasets, rendered codebooks, and `data/data.html` index.
 - `slides/`: rendered course slides as HTML files.
 - `modules/`: lesson notebooks and setup checks as Quarto `.qmd` files.
+- `modules/rendered/`: rendered HTML versions of lesson notebooks, starting at `modules/rendered/index.html`.
 - `assignments/`: rendered problem set and project instructions as HTML files.
 - `practice/templates/`: practice starter notebooks that may be updated during the course.
 - `practice/work/`: your copies of practice notebooks. Work here.
@@ -41,12 +42,14 @@ Open and edit notebooks from `practice/work/`.
 
 ## Rendering Notebooks
 
-Module notebooks render to self-contained HTML files. The included `_quarto.yml` files set `embed-resources: true`, so rendered notebooks can be submitted or shared as single HTML files.
+Module notebooks in `modules/` are editable Quarto `.qmd` files. Rendered versions for quick viewing are in `modules/rendered/`.
+
+When you render your own notebooks, the included `_quarto.yml` file sets `embed-resources: true`, so rendered notebooks can be submitted or shared as single HTML files.
 
 If rendering fails, check that R, Quarto, and the required packages are installed.
 
 Required R packages for the first part of the course:
 
 ```r
-install.packages(c("dplyr", "ggplot2", "readr", "stringr", "here"))
+install.packages(c("dplyr", "ggplot2", "readr", "stringr"))
 ```

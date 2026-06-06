@@ -6,218 +6,138 @@ format:
     toc: true
 ---
 
-```{r}
-#| include: false
-library(dplyr)
-library(ggplot2)
-```
+<style>
+figcaption,
+.figure-caption,
+p.caption {
+  text-align: center;
+  margin-top: 0.25rem;
+  margin-bottom: 2rem;
+}
+</style>
 
 # Goal
 
-This notebook is the first live workflow walkthrough.
+This module walks through getting the course materials in RStudio.
 
-We will use it to get everyone oriented in RStudio or Positron, confirm that the course project is open, run the course updater, copy practice notebooks into your work folder, and render a notebook to HTML.
+We will do this step by step in class. Follow along on your own computer.
 
-By the end, you should know how to:
+# Step 1: Open The Project Menu
 
-- open the course project
-- find the main course folders
-- update course materials with `source("updater.R")`
-- work from `practice/work/`
-- run code chunks
-- render a Quarto notebook
-- find the rendered HTML output
+![RStudio project menu with New Project option](images/rstudio-project-menu-new-project.png){fig-alt="RStudio project menu showing the New Project option."}
 
-# What We Are Opening
+In the upper-right corner of RStudio, open the project menu.
 
-The course materials are stored in a GitHub repository.
+Click **New Project...**.
 
-In class, we will open the repository in RStudio and work from the project root. The project root is the folder that contains:
+# Step 2: Choose Version Control
 
-- `data-visualization-course.Rproj`
-- `updater.R`
-- `modules/`
-- `practice/`
-- `data/`
-- `slides/`
-- `assignments/`
+![RStudio New Project Wizard showing Version Control](images/rstudio-new-project-wizard-version-control.svg){fig-alt="RStudio New Project Wizard with New Directory, Existing Directory, and Version Control options."}
 
-<!-- Screenshot to add: rstudio-project-root-files.png -->
+In the New Project Wizard, click **Version Control**.
 
-# Get The Course Materials
+# Step 3: Choose Git
 
-In RStudio, use the Git project workflow shown in class.
+![RStudio Version Control screen showing Git](images/rstudio-version-control-git.png){fig-alt="RStudio New Project Wizard version control screen with Git and Subversion options."}
 
-The instructor will walk through:
+Click **Git**.
 
-- opening RStudio
-- choosing the GitHub repository option
-- pasting the course repository URL
-- choosing where to store the project on your computer
-- opening the project after it downloads
+# Step 4: Enter The Repository And Folder
 
-<!-- Screenshot to add: rstudio-new-project-git.png -->
+![RStudio Clone Git Repository screen](images/rstudio-clone-git-repository.png){fig-alt="RStudio Clone Git Repository screen with repository URL, project directory name, and local folder location fields."}
 
-If you already have the course project, open the existing project instead of downloading it again.
+Paste the course repository address into **Repository URL**:
 
-# Confirm The Project Is Open
+<div style="border: 1px solid #9ca3af; border-radius: 6px; padding: 0.75em 1em; background: #f8fafc; font-size: 1.05em; overflow-wrap: anywhere;">
+<a href="https://github.com/erikwestlund/data-visualization-2026"><code>https://github.com/erikwestlund/data-visualization-2026</code></a>
+</div>
 
-In RStudio, the top-right project menu should show the course project.
+Then choose where you want the course materials saved on your computer.
 
-In the Files pane, you should see the course folders and files.
+Use **Browse...** if you want to choose a different folder.
 
-<!-- Screenshot to add: rstudio-open-project-menu.png -->
+# Step 5: Confirm The Project Opened
 
-Now run this chunk.
+![RStudio after opening the course project](images/rstudio-project-open-four-panes.png){fig-alt="RStudio open with the course project loaded, console on the left, environment pane in the upper right, and files pane in the lower right."}
 
-```{r}
-getwd()
-```
+After RStudio opens the project, the window should say `data-visualization-2026` near the top.
 
-You should be working inside the course project folder.
+RStudio is usually organized into four panes:
 
-# Find This Module
+- **Source/editor pane:** where notebooks and scripts open. If no file is open yet, this pane may not be visible.
+- **Console pane:** where you can type and run R commands directly.
+- **Environment pane:** where R objects appear after you create them.
+- **Files/Plots/Packages/Help/Viewer pane:** where you browse files, view plots, manage packages, read help pages, and preview output.
 
-This notebook lives here:
+In the Files pane, confirm that you can see course files such as `modules`, `practice`, `data`, `slides`, `syllabus.html`, and `updater.R`.
 
-```text
-modules/01-workflow-and-basics/01_get-course-materials.qmd
-```
+# Step 6: The Project
 
-Open it from the Files pane or from the file path shown by the instructor.
+The course folder includes two files that tell your software where the course starts:
 
-<!-- Screenshot to add: rstudio-open-workflow-module.png -->
+- `data-visualization-course.Rproj` for RStudio
+- `data-visualization-course.code-workspace` for Positron
 
-# Run The Course Updater
+These files tell the IDE the base location for the course project.
 
-The course materials may be updated during the week.
+That matters because the course has many folders: `modules`, `practice`, `data`, `slides`, and `assignments`.
 
-Run this in the R Console from the project root:
+Once the IDE knows the project root, we can refer to files naturally from one shared base location instead of constantly worrying about where each notebook lives in the folder structure.
+
+For example, a notebook can refer to a data file with a path like:
 
 ```r
-source("updater.R")
+readr::read_csv("data/real/prams_2011_selected.csv")
 ```
 
-The updater does two things:
+# Step 7: The Data Directory
 
-- pulls course updates from GitHub if this folder is a Git clone
-- copies missing practice templates into `practice/work/`
+Open the `data/` folder in the Files pane.
 
-It does not overwrite files that already exist in `practice/work/`.
+This folder contains the datasets we will use in modules, practice notebooks, problem sets, and the final project.
 
-<!-- Screenshot to add: rstudio-run-updater-console.png -->
+The most important file to open first is:
 
-# Check The Practice Work Folder
+- [`data/data.html`](data/data.html): the Course Data Summary
 
-Your own practice notebooks should live in:
+You can find it in the Files pane by opening the `data/` folder and clicking `data.html`.
 
-```text
-practice/work/
-```
+Other important pieces are:
 
-The updater copies starter notebooks from:
+- `data/manifest.csv`: a table listing all datasets
+- `data/real/`: real public or teaching datasets that have been cleaned for class
+- `data/simulated/`: simulated analog datasets with similar structure
+- `data/codebooks/`: codebooks describing the files and variables
 
-```text
-practice/templates/
-```
+The Course Data Summary links to each dataset and its codebook.
 
-Do not edit files in `practice/templates/` if you want to keep your work. Those files may be updated by the instructor.
+The codebook is where you check:
 
-<!-- Screenshot to add: rstudio-practice-work-folder.png -->
+- what one row represents
+- what each variable means
+- whether values are raw observations, summaries, percentages, or estimates
+- what cautions apply before interpreting a plot
 
-# Check R Code
+# Step 8: Modules
 
-Run a simple calculation.
+Open the `modules/` folder in the Files pane.
 
-```{r}
-2 + 2
-```
+Modules are the notebooks we will use during class. I will often open a module, make the text large, talk through the setup, run code chunks step by step, and show the output as we go.
 
-Create a small object.
+The `modules/` folder contains the editable notebook files:
 
-```{r}
-favorite_number <- 42
-favorite_number
-```
+- `modules/01-workflow-and-basics/`
+- `modules/02_categorical-data/`
+- `modules/03_continuous-data/`
+- later folders for group comparison, association, change, space, flow, and communication
 
-# Check Data
+Most module files end in `.qmd`. These are Quarto notebook source files.
 
-For this workflow check, we will use the built-in `mtcars` dataset so nothing else has to be loaded.
+The course also includes `modules/rendered/`, a folder with HTML versions of module notebooks. Use those when you want to quickly view a finished version without running the code yourself.
 
-```{r}
-mtcars |>
-  head()
-```
+- `modules/`: notebooks we can open, run, and edit during class
+- `modules/rendered/`: HTML versions for quick viewing
 
-```{r}
-mtcars |>
-  summarise(
-    rows = n(),
-    average_mpg = mean(mpg),
-    minimum_mpg = min(mpg),
-    maximum_mpg = max(mpg)
-  )
-```
+# Next Step
 
-# Check Plotting
-
-Make a quick plot.
-
-```{r}
-p1 <- ggplot(mtcars, aes(x = mpg)) +
-  geom_histogram(binwidth = 5)
-
-p1
-```
-
-Now add labels.
-
-```{r}
-p2 <- p1 +
-  labs(
-    title = "Distribution of Fuel Efficiency",
-    x = "Miles per gallon",
-    y = "Number of cars"
-  )
-
-p2
-```
-
-# Render The Notebook
-
-Now render the notebook.
-
-In RStudio, click the Render button. In Positron, click Preview.
-
-<!-- Screenshot to add: rstudio-render-button.png -->
-
-After rendering, confirm that:
-
-- an HTML file was created
-- the HTML file opens in the Viewer, browser, or preview pane
-- the plot appears in the rendered file
-- the text and code output appear in the rendered file
-
-<!-- Screenshot to add: rendered-workflow-notebook.png -->
-
-# What To Do Next
-
-After this workflow check:
-
-1. Open a practice notebook from `practice/work/`.
-2. Run its setup chunk.
-3. Work through the prompts.
-4. Render it to HTML.
-5. Keep your edited practice files in `practice/work/`.
-
-# Troubleshooting Notes
-
-Common problems:
-
-- The notebook was opened outside the course project.
-- R or Quarto is not installed correctly.
-- The first code chunk did not run.
-- `source("updater.R")` was run from the wrong folder.
-- The render failed because an earlier chunk had an error.
-
-When something fails, read the first error message carefully and fix that first.
+We will continue from the next screen in class.

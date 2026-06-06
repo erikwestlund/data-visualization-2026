@@ -20,8 +20,7 @@ Practice identifying and interpreting unusual continuous values.
 # Load Data
 
 ```{r}
-here::i_am("practice/templates/03_continuous-data/03_outliers-and-summaries-practice.qmd")
-nhanes_path <- here::here("data", "real", "nhanes_2021_2023_analysis.csv")
+nhanes_path <- "data/real/nhanes_2021_2023_analysis.csv"
 
 nhanes <- read_csv(nhanes_path, show_col_types = FALSE)
 
