@@ -1,24 +1,47 @@
 # Data Visualization Course
 
-This repository contains the student-facing course materials.
+This folder contains materials we'll be using daily in the course:
+
+* Slides (rendered HTML files)
+* Data sets referenced in class examples
+* Learning modules
+* Practice templates
+
+Please note that this repository will likely be updated daily. 
 
 ## Start Here
 
 1. Open `data-visualization-course.Rproj` in RStudio, or open this folder in Positron.
 2. Open `modules/00_preclass-tech-check/01_pre-class-directions.qmd`.
 3. Open and render `modules/00_preclass-tech-check/02_setup-check.qmd`.
-4. Use `syllabus.html` for the course syllabus.
+4. Open `syllabus.html` for the course syllabus.
 
-## Folders
+## What Is In This Folder
 
 - `data/`: course datasets, rendered codebooks, and `data/data.html` index.
 - `slides/`: rendered course slides as HTML files.
 - `modules/`: lesson notebooks and setup checks as Quarto `.qmd` files.
 - `assignments/`: rendered problem set and project instructions as HTML files.
+- `practice/templates/`: practice starter notebooks that may be updated during the course.
+- `practice/work/`: your copies of practice notebooks. Work here.
 
-## Rendering
+## Practice Work
 
-Module notebooks render to self-contained HTML files. The included `_quarto.yml` files set `embed-resources: true` so rendered notebooks can be submitted or shared as single HTML files.
+Do not edit files in `practice/templates/` if you want to keep your work. Those files may be updated during the course.
+
+Instead, run this from the R Console at the project root:
+
+```r
+source("updater.R")
+```
+
+That script updates course files if you are using Git, then copies new practice templates into `practice/work/`. It does not overwrite files that already exist, so your edits are left alone.
+
+Open and edit notebooks from `practice/work/`.
+
+## Rendering Notebooks
+
+Module notebooks render to self-contained HTML files. The included `_quarto.yml` files set `embed-resources: true`, so rendered notebooks can be submitted or shared as single HTML files.
 
 If rendering fails, check that R, Quarto, and the required packages are installed.
 

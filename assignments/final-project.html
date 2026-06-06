@@ -2175,7 +2175,7 @@ vertical-align: -.125em;
   <li><a href="#due-date" id="toc-due-date" class="nav-link active" data-scroll-target="#due-date">Due Date</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#part-1-exploratory-data-analysis-eda" id="toc-part-1-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#part-1-exploratory-data-analysis-eda">Part 1: Exploratory Data Analysis (EDA)</a></li>
-  <li><a href="#part-2-research-visualization-report" id="toc-part-2-research-visualization-report" class="nav-link" data-scroll-target="#part-2-research-visualization-report">Part 2: Research Visualization Report</a></li>
+  <li><a href="#part-2-focused-visualization-report" id="toc-part-2-focused-visualization-report" class="nav-link" data-scroll-target="#part-2-focused-visualization-report">Part 2: Focused Visualization Report</a></li>
   <li><a href="#what-counts-as-high-quality" id="toc-what-counts-as-high-quality" class="nav-link" data-scroll-target="#what-counts-as-high-quality">What Counts As High Quality</a></li>
   <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
   <li><a href="#rubric" id="toc-rubric" class="nav-link" data-scroll-target="#rubric">Rubric</a></li>
@@ -2209,7 +2209,8 @@ vertical-align: -.125em;
 </section>
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>The final project has two parts. Together, the two parts should show that you can use visualization both to explore data and to address a real research or applied data problem.</p>
+<p>The final project asks you to use visualization as an iterative workflow: explore a dataset, identify useful patterns or questions, and then build a focused set of final figures.</p>
+<p>You may use one dataset for the full project. This is the default expectation. You may use more than one dataset if your question requires it, but you do not need to switch datasets between the exploratory and final sections.</p>
 <p>In total, this project accounts for 50% of your final grade</p>
 <ul>
 <li>Part 1 counts for 20 percentage points of the course grade.</li>
@@ -2218,31 +2219,38 @@ vertical-align: -.125em;
 </section>
 <section id="part-1-exploratory-data-analysis-eda" class="level1">
 <h1>Part 1: Exploratory Data Analysis (EDA)</h1>
-<p>Complete an exploratory data analysis using a dataset provided by the course. You may also use your a dataset relevant to your own work.</p>
+<p>Complete an exploratory data analysis using a course dataset or a dataset relevant to your own work.</p>
 <p>Course datasets are listed on the course web site.</p>
 <p>Your EDA should include:</p>
 <ul>
 <li>a brief description of the dataset and main variables</li>
 <li>exploratory questions that can be investigated visually</li>
-<li>visualizations that examine distributions, missingness if relevant, grouping, association, change, or other patterns appropriate to the data</li>
+<li>at least four exploratory visualizations that examine distributions, missingness if relevant, grouping, association, change, or other patterns appropriate to the data</li>
 <li>short written interpretations of what the visualizations show, especially with potential scientific insights you may have uncovered</li>
-<li>reproducible code from data loading through visualization</li>
+<li>code from data loading through visualization</li>
 </ul>
 <p>The goal is not to make every possible plot. The goal is to use visualization to learn what is in the data and to identify patterns, limitations, and follow-up questions.</p>
 </section>
-<section id="part-2-research-visualization-report" class="level1">
-<h1>Part 2: Research Visualization Report</h1>
-<p>Describe a real research, public health, scientific, policy, or applied data problem and create a focused visualization report for that problem.</p>
-<p>You may use your own data. If necessary, you may use datasets from the course, but the question should not substantially overlap with your Part 1 exploratory analysis.</p>
+<section id="part-2-focused-visualization-report" class="level1">
+<h1>Part 2: Focused Visualization Report</h1>
+<p>Create a focused visualization report based on something you learned from the exploratory analysis.</p>
+<p>The final report may use the same dataset as Part 1. The final figures should build on the EDA, but should not simply duplicate the exploratory plots. They should be revised, narrowed, combined, reframed, or polished for communication.</p>
 <p>Your report should include:</p>
 <ul>
-<li>a clear description of the research or applied problem</li>
-<li>a description of the data needed to address the problem</li>
+<li>a clear research, public health, scientific, policy, or applied question</li>
+<li>a short explanation of how the EDA informed the final focus</li>
 <li>a statement of the visualization tasks involved, such as grouping, association, composition, rank, change, space, flow, distribution, outlier detection, or comparison</li>
-<li>an explanation of why the chosen visualizations are appropriate for the problem, data, and audience</li>
 <li>at least three high-quality visualizations</li>
-<li>the complete workflow from start to finish, including data loading, cleaning or transformation, visualization code, revision, and final presentation</li>
+<li>an explanation of why the final visualizations are appropriate for the question, data, and audience</li>
+<li>the workflow from data loading through cleaning or transformation, exploratory plots, revision, and final presentation</li>
 <li>written interpretation of each visualization, including limitations or cautions</li>
+</ul>
+<p>Examples of acceptable relationships between EDA and final figures:</p>
+<ul>
+<li>EDA: a rough histogram; final report: a grouped distribution plot with clearer labels and interpretation</li>
+<li>EDA: a broad scatterplot; final report: a focused association plot using a subset, grouping variable, or annotation</li>
+<li>EDA: a many-category bar chart; final report: a ranked comparison focused on the most relevant categories</li>
+<li>EDA: several exploratory panels; final report: a smaller set of panels chosen for a specific audience</li>
 </ul>
 </section>
 <section id="what-counts-as-high-quality" class="level1">
@@ -2259,7 +2267,7 @@ vertical-align: -.125em;
 <section id="submission" class="level1">
 <h1>Submission</h1>
 <p>Submit a rendered HTML notebook or report on CoursePlus or through email to ewestlund@jhu.edu.</p>
-<p>Your submission should include all code needed to reproduce the work. If you are working in a Quarto-only workflow, the rendered notebook should include everything you need. You do not need to include the data sets. If you use your own data sets (not ones provided by teh course), describe how the data were prepared.</p>
+<p>Your submission should include all code needed to reproduce the work. If you are working in a Quarto-only workflow, the rendered notebook should include everything you need. You do not need to include the data sets. If you use your own data sets, describe how the data were prepared.</p>
 </section>
 <section id="rubric" class="level1">
 <h1>Rubric</h1>
@@ -2279,29 +2287,29 @@ vertical-align: -.125em;
 </thead>
 <tbody>
 <tr class="odd">
-<td>Part 1: EDA</td>
+<td>Dataset And Question Framing</td>
 <td style="text-align: right;">10</td>
-<td>Describes dataset/unit of observation, asks exploratory questions, uses appropriate plots to examine patterns, and notes limitations.</td>
+<td>Describes the dataset/unit of observation, identifies the main variables, states a focused question or applied problem, and explains the data context.</td>
 </tr>
 <tr class="even">
-<td>Part 2: Problem Framing</td>
+<td>Exploratory Visualization</td>
 <td style="text-align: right;">10</td>
-<td>States a real research/applied problem, identifies audience/data context, and explains the analytic goal.</td>
+<td>Includes at least 4 exploratory visualizations that examine useful patterns in the data and include short interpretations.</td>
 </tr>
 <tr class="odd">
-<td>Visualization Choices</td>
+<td>Final Visualization Choices</td>
 <td style="text-align: right;">10</td>
-<td>Names the visualization tasks involved and justifies why the chosen figure types fit the problem and data.</td>
+<td>Explains how the EDA informed the final focus, names the visualization tasks involved, and justifies the final figure choices.</td>
 </tr>
 <tr class="even">
 <td>Final Visualizations</td>
 <td style="text-align: right;">10</td>
-<td>Includes at least 3 high-quality figures that are accurate, readable, labeled, appropriately scaled, and connected to the problem.</td>
+<td>Includes at least 3 high-quality final figures that are accurate, readable, labeled, appropriately scaled, and connected to the question.</td>
 </tr>
 <tr class="odd">
-<td>Reproducibility And Interpretation</td>
+<td>Workflow, Interpretation, And Limitations</td>
 <td style="text-align: right;">10</td>
-<td>Shows complete workflow from data loading to final figures, renders successfully, interprets findings accurately, and notes cautions.</td>
+<td>Shows the workflow from data loading to final figures, renders successfully, interprets findings accurately, and notes relevant cautions.</td>
 </tr>
 </tbody>
 </table>

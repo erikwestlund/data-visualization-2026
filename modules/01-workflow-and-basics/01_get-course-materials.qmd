@@ -1,0 +1,223 @@
+---
+title: "Get The Course Materials"
+format:
+  html:
+    embed-resources: true
+    toc: true
+---
+
+```{r}
+#| include: false
+library(dplyr)
+library(ggplot2)
+```
+
+# Goal
+
+This notebook is the first live workflow walkthrough.
+
+We will use it to get everyone oriented in RStudio or Positron, confirm that the course project is open, run the course updater, copy practice notebooks into your work folder, and render a notebook to HTML.
+
+By the end, you should know how to:
+
+- open the course project
+- find the main course folders
+- update course materials with `source("updater.R")`
+- work from `practice/work/`
+- run code chunks
+- render a Quarto notebook
+- find the rendered HTML output
+
+# What We Are Opening
+
+The course materials are stored in a GitHub repository.
+
+In class, we will open the repository in RStudio and work from the project root. The project root is the folder that contains:
+
+- `data-visualization-course.Rproj`
+- `updater.R`
+- `modules/`
+- `practice/`
+- `data/`
+- `slides/`
+- `assignments/`
+
+<!-- Screenshot to add: rstudio-project-root-files.png -->
+
+# Get The Course Materials
+
+In RStudio, use the Git project workflow shown in class.
+
+The instructor will walk through:
+
+- opening RStudio
+- choosing the GitHub repository option
+- pasting the course repository URL
+- choosing where to store the project on your computer
+- opening the project after it downloads
+
+<!-- Screenshot to add: rstudio-new-project-git.png -->
+
+If you already have the course project, open the existing project instead of downloading it again.
+
+# Confirm The Project Is Open
+
+In RStudio, the top-right project menu should show the course project.
+
+In the Files pane, you should see the course folders and files.
+
+<!-- Screenshot to add: rstudio-open-project-menu.png -->
+
+Now run this chunk.
+
+```{r}
+getwd()
+```
+
+You should be working inside the course project folder.
+
+# Find This Module
+
+This notebook lives here:
+
+```text
+modules/01-workflow-and-basics/01_get-course-materials.qmd
+```
+
+Open it from the Files pane or from the file path shown by the instructor.
+
+<!-- Screenshot to add: rstudio-open-workflow-module.png -->
+
+# Run The Course Updater
+
+The course materials may be updated during the week.
+
+Run this in the R Console from the project root:
+
+```r
+source("updater.R")
+```
+
+The updater does two things:
+
+- pulls course updates from GitHub if this folder is a Git clone
+- copies missing practice templates into `practice/work/`
+
+It does not overwrite files that already exist in `practice/work/`.
+
+<!-- Screenshot to add: rstudio-run-updater-console.png -->
+
+# Check The Practice Work Folder
+
+Your own practice notebooks should live in:
+
+```text
+practice/work/
+```
+
+The updater copies starter notebooks from:
+
+```text
+practice/templates/
+```
+
+Do not edit files in `practice/templates/` if you want to keep your work. Those files may be updated by the instructor.
+
+<!-- Screenshot to add: rstudio-practice-work-folder.png -->
+
+# Check R Code
+
+Run a simple calculation.
+
+```{r}
+2 + 2
+```
+
+Create a small object.
+
+```{r}
+favorite_number <- 42
+favorite_number
+```
+
+# Check Data
+
+For this workflow check, we will use the built-in `mtcars` dataset so nothing else has to be loaded.
+
+```{r}
+mtcars |>
+  head()
+```
+
+```{r}
+mtcars |>
+  summarise(
+    rows = n(),
+    average_mpg = mean(mpg),
+    minimum_mpg = min(mpg),
+    maximum_mpg = max(mpg)
+  )
+```
+
+# Check Plotting
+
+Make a quick plot.
+
+```{r}
+p1 <- ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(binwidth = 5)
+
+p1
+```
+
+Now add labels.
+
+```{r}
+p2 <- p1 +
+  labs(
+    title = "Distribution of Fuel Efficiency",
+    x = "Miles per gallon",
+    y = "Number of cars"
+  )
+
+p2
+```
+
+# Render The Notebook
+
+Now render the notebook.
+
+In RStudio, click the Render button. In Positron, click Preview.
+
+<!-- Screenshot to add: rstudio-render-button.png -->
+
+After rendering, confirm that:
+
+- an HTML file was created
+- the HTML file opens in the Viewer, browser, or preview pane
+- the plot appears in the rendered file
+- the text and code output appear in the rendered file
+
+<!-- Screenshot to add: rendered-workflow-notebook.png -->
+
+# What To Do Next
+
+After this workflow check:
+
+1. Open a practice notebook from `practice/work/`.
+2. Run its setup chunk.
+3. Work through the prompts.
+4. Render it to HTML.
+5. Keep your edited practice files in `practice/work/`.
+
+# Troubleshooting Notes
+
+Common problems:
+
+- The notebook was opened outside the course project.
+- R or Quarto is not installed correctly.
+- The first code chunk did not run.
+- `source("updater.R")` was run from the wrong folder.
+- The render failed because an earlier chunk had an error.
+
+When something fails, read the first error message carefully and fix that first.

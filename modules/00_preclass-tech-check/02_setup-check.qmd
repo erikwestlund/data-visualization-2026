@@ -12,15 +12,18 @@ library(dplyr)
 library(ggplot2)
 ```
 
-# Goal
-
 Use this notebook to confirm that R, `ggplot2`, and Quarto rendering work on your computer.
 
-Run each code chunk. Then render the notebook to HTML.
+After opening this file:
+
+- In RStudio, click `Render` in the area on top of the file text.
+- In Positron, click `Preview` in the area on top of the file text.
+
+If rendering works, the checks below should run automatically and produce an HTML file with a table and plot.
 
 # Check 1: R Works
 
-Run this chunk.
+This calculation should run during rendering.
 
 ```{r}
 2 + 2
@@ -39,7 +42,7 @@ mtcars |>
 
 # Check 3: Summaries Work
 
-Now summarize the data.
+This summary should run during rendering.
 
 ```{r}
 mtcars |>
@@ -51,13 +54,9 @@ mtcars |>
   )
 ```
 
-Question: how many rows are in `mtcars`?
-
-> Write your answer here.
-
 # Check 4: ggplot2 Works
 
-Now make a simple plot with `ggplot2`.
+This plot should run during rendering.
 
 ```{r}
 p1 <- ggplot(mtcars, aes(x = mpg))
@@ -99,20 +98,11 @@ p4 <- p3 +
 p4
 ```
 
-Question: what does this plot show?
-
-> Write one or two sentences here.
-
 # Check 5: Render Works
 
-Render this notebook to HTML.
+After rendering or previewing, confirm that:
 
-After rendering, answer these questions:
-
-- Did the notebook render successfully?
-- Where did the HTML file appear?
-- Did the plot appear in the rendered HTML file?
-
-Notes:
-
-> Write any setup notes or error messages here.
+- an HTML file was created or previewed
+- the table appears
+- the plot appears
+- there are no error messages

@@ -4,8 +4,12 @@
 .Ruserdata
 .Rproj.user/
 .quarto/
+docs/
 _freeze/
 *_cache/
 *_files/
 *.knit.md
 *.utf8.md
+practice/work/*
+!practice/work/
+!practice/work/README.md
