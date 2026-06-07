@@ -2213,9 +2213,15 @@ vertical-align: -.125em;
   <li><a href="#step-3-choose-git" id="toc-step-3-choose-git" class="nav-link" data-scroll-target="#step-3-choose-git">Step 3: Choose Git</a></li>
   <li><a href="#step-4-enter-the-repository-and-folder" id="toc-step-4-enter-the-repository-and-folder" class="nav-link" data-scroll-target="#step-4-enter-the-repository-and-folder">Step 4: Enter The Repository And Folder</a></li>
   <li><a href="#step-5-confirm-the-project-opened" id="toc-step-5-confirm-the-project-opened" class="nav-link" data-scroll-target="#step-5-confirm-the-project-opened">Step 5: Confirm The Project Opened</a></li>
-  <li><a href="#step-6-the-project" id="toc-step-6-the-project" class="nav-link" data-scroll-target="#step-6-the-project">Step 6: The Project</a></li>
-  <li><a href="#step-7-the-data-directory" id="toc-step-7-the-data-directory" class="nav-link" data-scroll-target="#step-7-the-data-directory">Step 7: The Data Directory</a></li>
-  <li><a href="#step-8-modules" id="toc-step-8-modules" class="nav-link" data-scroll-target="#step-8-modules">Step 8: Modules</a></li>
+  <li><a href="#step-6-the-project" id="toc-step-6-the-project" class="nav-link" data-scroll-target="#step-6-the-project">Step 6: The Project</a>
+  <ul class="collapse">
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#data-directory" id="toc-data-directory" class="nav-link" data-scroll-target="#data-directory">Data Directory</a></li>
+  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules">Modules</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
+  </ul></li>
+  <li><a href="#step-7-test-the-updater" id="toc-step-7-test-the-updater" class="nav-link" data-scroll-target="#step-7-test-the-updater">Step 7: Test The Updater</a></li>
   <li><a href="#next-step" id="toc-next-step" class="nav-link" data-scroll-target="#next-step">Next Step</a></li>
   </ul>
 </nav>
@@ -2300,6 +2306,9 @@ margin-bottom: 2rem;
 </div>
 <p>Then choose where you want the course materials saved on your computer.</p>
 <p>Use <strong>Browse…</strong> if you want to choose a different folder.</p>
+<p>Choose a location that does not already contain another copy of this course folder.</p>
+<p>Click <strong>Create Project</strong>.</p>
+<p>This step requires an internet connection and Git. If <strong>Git</strong> does not appear as an option in RStudio, Git is not installed or RStudio has not found it yet.</p>
 </section>
 <section id="step-5-confirm-the-project-opened" class="level1">
 <h1>Step 5: Confirm The Project Opened</h1>
@@ -2327,13 +2336,22 @@ margin-bottom: 2rem;
 <li><code>data-visualization-course.code-workspace</code> for Positron</li>
 </ul>
 <p>These files tell the IDE the base location for the course project.</p>
-<p>That matters because the course has many folders: <code>modules</code>, <code>practice</code>, <code>data</code>, <code>slides</code>, and <code>assignments</code>.</p>
+<p>That matters because the course has many folders: <code>assignments</code>, <code>slides</code>, <code>data</code>, <code>modules</code>, and <code>practice</code>.</p>
 <p>Once the IDE knows the project root, we can refer to files naturally from one shared base location instead of constantly worrying about where each notebook lives in the folder structure.</p>
 <p>For example, a notebook can refer to a data file with a path like:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/real/prams_2011_selected.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="assignments" class="level2">
+<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
+<p>Open the <code>assignments/</code> folder in the Files pane.</p>
+<p>This folder contains rendered HTML instructions for problem sets and the final project.</p>
 </section>
-<section id="step-7-the-data-directory" class="level1">
-<h1>Step 7: The Data Directory</h1>
+<section id="slides" class="level2">
+<h2 class="anchored" data-anchor-id="slides">Slides</h2>
+<p>Open the <code>slides/</code> folder in the Files pane.</p>
+<p>This folder contains rendered HTML slide decks for class concepts and transitions.</p>
+</section>
+<section id="data-directory" class="level2">
+<h2 class="anchored" data-anchor-id="data-directory">Data Directory</h2>
 <p>Open the <code>data/</code> folder in the Files pane.</p>
 <p>This folder contains the datasets we will use in modules, practice notebooks, problem sets, and the final project.</p>
 <p>The most important file to open first is:</p>
@@ -2357,8 +2375,8 @@ margin-bottom: 2rem;
 <li>what cautions apply before interpreting a plot</li>
 </ul>
 </section>
-<section id="step-8-modules" class="level1">
-<h1>Step 8: Modules</h1>
+<section id="modules" class="level2">
+<h2 class="anchored" data-anchor-id="modules">Modules</h2>
 <p>Open the <code>modules/</code> folder in the Files pane.</p>
 <p>Modules are the notebooks we will use during class. I will often open a module, make the text large, talk through the setup, run code chunks step by step, and show the output as we go.</p>
 <p>The <code>modules/</code> folder contains the editable notebook files:</p>
@@ -2375,9 +2393,41 @@ margin-bottom: 2rem;
 <li><code>modules/rendered/</code>: HTML versions for quick viewing</li>
 </ul>
 </section>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<p>Open the <code>practice/</code> folder in the Files pane.</p>
+<p>This folder has two parts:</p>
+<ul>
+<li><code>practice/templates/</code>: starter notebooks provided with the course</li>
+<li><code>practice/work/</code>: your own copies of practice notebooks</li>
+</ul>
+<p>Use <code>practice/work/</code> for your edits. The updater copies new templates into <code>practice/work/</code> without overwriting files that are already there.</p>
+</section>
+</section>
+<section id="step-7-test-the-updater" class="level1">
+<h1>Step 7: Test The Updater</h1>
+<p>Run this command in the R Console from the project root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;updater.R&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The updater does two things:</p>
+<ul>
+<li>gets the latest course files if you are using the Git version of the course folder</li>
+<li>copies any missing practice templates into <code>practice/work/</code></li>
+</ul>
+<p>It does not overwrite files that already exist in <code>practice/work/</code>.</p>
+<p>You should see one of these outcomes in the Console:</p>
+<ul>
+<li>Git says the course is already up to date</li>
+<li>Git downloads course updates</li>
+<li>the updater reports that it copied practice templates</li>
+<li>the updater reports that practice templates already exist</li>
+</ul>
+<p>After it runs, open <code>practice/work/</code> in the Files pane. You should see practice notebooks there.</p>
+</section>
 <section id="next-step" class="level1">
 <h1>Next Step</h1>
-<p>We will continue from the next screen in class.</p>
+<p>Open the first visualization module:</p>
+<p><code>modules/01-workflow-and-basics/02_first-visualization.qmd</code></p>
+<p>We will work through that notebook together.</p>
 </section>
 
 </main>
