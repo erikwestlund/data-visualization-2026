@@ -32,7 +32,7 @@ Click **New Project...**.
 
 # Step 2: Choose Version Control
 
-![RStudio New Project Wizard showing Version Control](images/rstudio-new-project-wizard-version-control.svg){fig-alt="RStudio New Project Wizard with New Directory, Existing Directory, and Version Control options."}
+![RStudio New Project Wizard showing Version Control](images/rstudio-new-project-wizard-version-control.png){fig-alt="RStudio New Project Wizard with New Directory, Existing Directory, and Version Control options."}
 
 In the New Project Wizard, click **Version Control**.
 
@@ -116,7 +116,7 @@ This folder contains the datasets we will use in modules, practice notebooks, pr
 
 The most important file to open first is:
 
-- [`data/data.html`](data/data.html): the Course Data Summary
+- [`data/data.html`](../../../data/data.html): the Course Data Summary
 
 You can find it in the Files pane by opening the `data/` folder and clicking `data.html`.
 
