@@ -10,7 +10,6 @@ format:
 #| include: false
 library(dplyr)
 library(ggplot2)
-library(readr)
 ```
 
 # Goal
@@ -48,9 +47,7 @@ A visualization combines:
 We will use a cleaned public PRAMS dataset.
 
 ```{r}
-prams_path <- "data/real/prams_2011_selected.csv"
-
-prams <- read_csv(prams_path, show_col_types = FALSE)
+prams <- readr::read_csv("data/real/prams_2011_selected.csv")
 
 prams |>
   glimpse()
@@ -112,7 +109,7 @@ prams_overall |>
 
 For plots about overall location estimates, we will use `prams_overall`. For plots about the structure of the PRAMS file, we will use the full `prams` data.
 
-This kind of data preparation is part of visualization. A plot can only answer the right question if the data are suited to the questions of interest. On Day 2 we will spend more time on the basic data verbs used to inspect, filter, summarize, and arrange data before plotting one variable at a time.
+This kind of data preparation is part of visualization. A plot can only answer the right question if the data are suited to the questions of interest. On Day 2 we will spend more time on the basic functions used to inspect, filter, summarize, and arrange data before plotting one variable at a time.
 
 # Plot 1: Distribution
 

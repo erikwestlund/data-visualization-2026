@@ -1,0 +1,179 @@
+---
+title: "Practice: Data Cleaning"
+format:
+  html:
+    embed-resources: true
+    toc: true
+---
+
+```{r}
+#| include: false
+library(dplyr)
+library(ggplot2)
+```
+
+# Goal
+
+Practice a basic data-cleaning workflow with one data file.
+
+You will practice:
+
+- `select()`
+- `rename()`
+- `mutate()`
+- `filter()`
+- `group_by()` and `summarize()`
+- reordering categories by a value
+- releveling categories in a chosen order
+
+# Data
+
+Use NHANES. I've set it up below.
+
+This file has one row per NHANES participant in the teaching dataset.
+
+# Work
+
+## Load Data
+
+```{r}
+# Load the NHANES analysis data.
+
+dat <- readr::read_csv('data/real/nhanes_2021_2023_analysis.csv')
+
+```
+
+## Select Columns
+
+Select this smaller set of variables:
+
+- `respondent_id`
+- `gender`
+- `age_years`
+- `race_ethnicity`
+- `pulse_1`
+- `pulse_2`
+- `pulse_3`
+- `adult_bp_category_simplified`
+
+```{r}
+# Use select() to keep the columns you want to work with.
+
+dat <- dat |>
+  select(
+    # ...
+  )
+```
+
+## Rename Columns
+
+Rename respondent_id to id.
+
+```{r}
+# Use rename() to give at least two columns clearer names.
+
+dat <- dat |>
+  rename(
+    # ... # The format is new_name = old_name
+  )
+```
+
+## Mutate
+
+Use `mutate()` to create a variable `pulse_mean` and a categorical version of `age_years`.
+
+I started the `case_when()` statement for the age category. Finish the remaining age groups.
+
+```{r}
+# Use mutate() to create pulse_mean and age_group.
+dat |> select(age_years) |> summary()
+
+dat <- dat |>
+  mutate(
+    pulse_mean = # ...,
+    age_group = case_when(
+      age_years < 18 ~ "Under 18",
+      age_years >= 18 & age_years <= 44 ~ "18-44",
+      # Add the next age group here.
+      # Add the oldest age group here.
+      TRUE ~ NA_character_ # This acts as a fallback.
+    )
+  )
+```
+
+## Filter
+
+Create a different dataframe filtered to a subset of 18-44 year-olds.
+
+```{r}
+# Use filter() to keep the rows you need.
+
+young_adults <- dat |>
+  filter(...) |> # fill in here
+  filter(...) # Hint: it's easiest with two lines of filtering
+```
+
+## Group And Summarize
+
+Create one grouped summary table of average pulse by age group.
+
+```{r}
+# Use group_by() and summarize() to create a grouped summary table.
+
+pulse_by_age <- dat |>
+  group_by(...) |> # Fill out
+  summarize(
+    mean_pulse = mean(...),  # fill out... you can  add ", NA.RM = TRUE" to remove NAs
+    n = ..., # fill out
+    .groups = "drop" # this "ungroups" the data
+  )
+
+pulse_by_age
+```
+
+## Reorder
+
+Reorder the race_ethnicity category by average pulse.
+
+```{r}
+# Use reorder() to order categories by a summary value.
+
+pulse_by_race_ethnicity <- dat |>
+  group_by(race_ethnicity) |>
+  summarize(
+    mean_pulse = mean(pulse_mean, na.rm = TRUE),  # This may look awkward.  But we take a mean of a mean, because we're in a group_by
+    n = n(),
+    .groups = "drop"
+  ) |>
+  mutate(
+    race_ethnicity = reorder(...) # fill it in. the format is:  variable name, order variable
+  )
+
+pulse_by_race_ethnicity
+```
+
+## Relevel
+
+Relevel `adult_bp_category_simplified` in this order
+
+1. `normal_range`
+2. `elevated_range`
+3. `stage_1_range`
+4. `stage_2_range`
+
+```{r}
+# Use factor(..., levels = c(...)) to set a meaningful category order.
+
+dat <- dat |>
+  mutate(
+    adult_bp_category_simplified = factor(
+      adult_bp_category_simplified,
+      levels = c(
+        # write the levels out here in quotes, like "normal_range", ...
+      )
+    )
+  )
+
+dat |>
+  count(adult_bp_category_simplified)
+```

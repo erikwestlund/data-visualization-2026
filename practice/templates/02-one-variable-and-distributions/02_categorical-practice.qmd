@@ -1,0 +1,74 @@
+---
+title: "Practice: Ordered Bars"
+format:
+  html:
+    embed-resources: true
+    toc: true
+---
+
+```{r}
+#| include: false
+library(dplyr)
+library(ggplot2)
+```
+
+# Goal
+
+Practice the basic workflow from the counts and ordering module:
+
+1. load data
+2. reorder a categorical variable
+3. plot ordered bars
+
+# Data
+
+Use:
+
+`data/real/state_population_ranks.csv`
+
+# Task
+
+Create an ordered bar chart of state population.
+
+Keep it simple. You do not need to use every state if that makes the chart crowded.
+
+# Work
+
+## Load Data
+
+```{r}
+# Load the state population data.
+
+dat <- readr::read_csv("data/real/state_population_ranks.csv")
+```
+
+## Reorder
+
+```{r}
+# Pick a set of states and reorder state_name by population.
+
+states_for_plot <- dat |>
+  filter(...) |>
+  mutate(
+    state_name = reorder(..., ...)
+  )
+```
+
+## Plot Bars
+
+```{r}
+# Make an ordered bar chart.
+
+ggplot(
+  states_for_plot,
+  aes(x = ..., y = ...)
+) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(
+    title = "...",
+    x = NULL,
+    y = "..."
+  ) +
+  theme_minimal()
+```

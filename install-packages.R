@@ -1,4 +1,5 @@
 course_packages <- c(
+  "DT",
   "dplyr",
   "ggplot2",
   "knitr",

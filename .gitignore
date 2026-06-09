@@ -5,6 +5,8 @@
 .Rproj.user/
 .quarto/
 docs/
+protected-local-changes/
+.student-export-hashes.tsv
 _freeze/
 *_cache/
 *_files/

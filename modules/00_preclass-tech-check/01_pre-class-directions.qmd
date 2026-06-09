@@ -44,6 +44,16 @@ Choose the installer for your operating system.
 
 After installing R, restart RStudio or Positron if either one is already open.
 
+# Install Git On Windows
+
+Windows users may need to install Git separately so the course updater can download new course files.
+
+Download Git for Windows here:
+
+<https://git-scm.com/install/windows>
+
+macOS and Linux users usually already have Git available or can install it through the operating system's developer tools or package manager.
+
 # Install an Editor
 
 ## Option 1: RStudio (recommended)

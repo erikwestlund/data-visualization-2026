@@ -1,0 +1,148 @@
+---
+title: "Practice: Continuous Variables"
+format:
+  html:
+    embed-resources: true
+    toc: true
+---
+
+```{r}
+#| include: false
+library(dplyr)
+library(ggplot2)
+```
+
+# Goal
+
+Practice a simple continuous-variable workflow:
+
+- load one data file
+- choose one numeric variable
+- make a short summary
+- plot the distribution
+- change the bin width and compare
+- use a boxplot to compare spread across groups
+
+# Data
+
+Use:
+
+`data/real/nhanes_2021_2023_analysis.csv`
+
+Good variables to try:
+
+- `age_years`
+- `systolic_mean`
+- `diastolic_mean`
+- `pulse_mean`
+- `mean_daily_energy_kcal`
+
+Helpful module reference: `modules/04_continuous-data/02_boxplots-violin-plots-and-outliers.qmd`.
+
+# Work
+
+## Load Data
+
+```{r}
+# Load the NHANES analysis data.
+
+dat <- readr::read_csv("data/real/nhanes_2021_2023_analysis.csv")
+```
+
+## Select One Numeric Variable
+
+```{r}
+# Select one numeric variable and filter out missing values.
+
+one_variable <- dat |>
+  select(...) |>
+  filter(!is.na(...))
+```
+
+## Summarize
+
+```{r}
+# Calculate mean, median, minimum, maximum, and number of non-missing values.
+
+one_variable |>
+  summarize(
+    n = n(),
+    mean_value = mean(...),
+    median_value = median(...),
+    min_value = min(...),
+    max_value = max(...)
+  )
+```
+
+## Plot
+
+```{r}
+# Make a histogram.
+
+ggplot(
+  one_variable,
+  aes(x = ...)
+) +
+  geom_histogram(binwidth = ...) +
+  labs(
+    title = "...",
+    x = "...",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+
+## Change The Bin Width
+
+```{r}
+# Make the same histogram with a different bin width.
+
+ggplot(
+  one_variable,
+  aes(x = ...)
+) +
+  geom_histogram(binwidth = ...) +
+  labs(
+    title = "...",
+    x = "...",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+
+## Boxplot By Group
+
+Choose one numeric variable and one categorical grouping variable.
+
+Suggestion: use `age_group` for the grouping variable.
+
+```{r}
+# Make a boxplot to compare spread across groups.
+
+boxplot_data <- dat |>
+  select(age_group, ...) |>
+  filter(!is.na(age_group)) |>
+  filter(!is.na(...))
+
+ggplot(
+  boxplot_data,
+  aes(x = age_group, y = ...)
+) +
+  geom_boxplot() +
+  labs(
+    title = "...",
+    x = "Age group",
+    y = "..."
+  ) +
+  theme_minimal()
+```
+
+The boxplot shows the median, the middle 50% of values, the whiskers, and points flagged by the default boxplot rule.
+
+# Interpretation
+
+Write 2-3 sentences:
+
+- What does the histogram show about the shape of the variable?
+- How did changing the bin width change what you could see?
+- What does the boxplot show about spread across groups?
