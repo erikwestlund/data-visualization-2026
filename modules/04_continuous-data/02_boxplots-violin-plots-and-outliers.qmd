@@ -128,7 +128,7 @@ diet_flagged |>
   head(10)
 ```
 
-## Compare With A Box Plot
+## Compare Groups With A Box Plot
 
 `ggplot2` makes it very easy to create boxplots.
 
@@ -457,8 +457,6 @@ ggplot(
   ) +
   theme_minimal()
 ```
-
-This is not automatically better than a boxplot. Above is another view of a density plot, with plotted values, and highlighted outliers.
 
 # Takeaways
 

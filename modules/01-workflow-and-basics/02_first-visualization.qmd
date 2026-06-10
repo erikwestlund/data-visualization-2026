@@ -177,7 +177,7 @@ p5 <- p4 +
 p5
 ```
 
-Interpretation: most overall state/location estimates are below 30 percent, but the distribution has a right tail with some higher estimates.
+Most overall state/location estimates are below 30 percent, but the distribution has a right tail with some higher estimates.
 
 # Plot 2: Compare Categories
 
@@ -241,7 +241,7 @@ p4 <- p3 +
 p4
 ```
 
-Interpretation: the plot compares overall location estimates, not individual people. Ordering the locations makes the higher and lower estimates easier to see.
+The plot compares overall location estimates, not individual people. Ordering the locations makes the higher and lower estimates easier to see.
 
 # Plot 3: Association
 
@@ -322,7 +322,7 @@ p5 <- p4 +
 p5
 ```
 
-Interpretation: state/location estimates with higher reported alcohol use tend to have higher reported binge drinking. This is an association across pre-aggregated location estimates, not a person-level causal claim.
+State/location estimates with higher reported alcohol use tend to have higher reported binge drinking. This is an association across pre-aggregated location estimates, not a person-level causal claim.
 
 # Create A Flag Before Plotting
 
@@ -392,7 +392,7 @@ p4 <- p3 +
 p4
 ```
 
-Interpretation: the new variable does not change the estimates. It changes what the figure emphasizes by separating locations above the median from the rest.
+The new variable does not change the estimates. It changes what the figure emphasizes by separating locations above the median from the rest.
 
 # Day 1 Pattern
 

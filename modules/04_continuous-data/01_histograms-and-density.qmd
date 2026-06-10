@@ -118,7 +118,7 @@ p3 <- p2 +
 p3
 ```
 
-Interpretation: the distribution is centered a little above 120 mmHg and has a right tail with some higher readings.
+The distribution is centered a little above 120 mmHg and has a right tail with some higher readings.
 
 # Use Fill To Highlight A Threshold
 
