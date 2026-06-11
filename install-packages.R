@@ -3,6 +3,7 @@ course_packages <- c(
   "dplyr",
   "ggplot2",
   "knitr",
+  "mgcv",
   "readr",
   "rmarkdown",
   "stringr",

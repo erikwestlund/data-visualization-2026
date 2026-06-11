@@ -46,6 +46,15 @@ NHANES is a complex survey. In this course, these are exploratory sample visuali
 
 Use `filter()` to keep the observations that match the question: adults with a non-missing blood pressure value.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+| Choose or rename columns | `select()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 adult_bp <- nhanes |>
   filter(
@@ -61,6 +70,14 @@ adult_bp |>
 # Summarize Before Plotting
 
 Summary statistics are aggregations. They reduce many participant values to a few numbers.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `summarize()`; `n()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 adult_bp_summary <- adult_bp |>
@@ -85,6 +102,14 @@ This is a good EDA habit: summarize to get oriented, then plot to see what the s
 
 Start with the data and x-axis mapping.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p1 <- ggplot(
   adult_bp,
@@ -96,6 +121,14 @@ p1
 
 Add a histogram.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_histogram()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p2 <- p1 +
   geom_histogram(binwidth = 5)
@@ -104,6 +137,14 @@ p2
 ```
 
 Add labels and a theme.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p3 <- p2 +
@@ -125,6 +166,25 @@ The distribution is centered a little above 120 mmHg and has a right tail with s
 We can also use color or fill to highlight a practical threshold.
 
 For example, below, we fill only the part of the distribution for people with mean daily energy intake over 4,000 calories.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+| Create or change columns | `mutate()` |
+:::
+<!-- data-prep-anatomy-end -->
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `fill` |
+| Geoms / stats | `geom_histogram()` |
+| Scales / coordinates / facets / labels | `scale_fill_manual()`; `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 diet_4000 <- nhanes |>
@@ -157,6 +217,14 @@ This does not make 4,000 calories an official outlier rule. It is just a thresho
 
 Bin width changes the level of detail in the histogram.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p1 <- ggplot(adult_bp, aes(x = systolic_mean)) +
   geom_histogram(binwidth = 2)
@@ -187,12 +255,29 @@ p1 <- ggplot(adult_bp, aes(x = systolic_mean))
 p1
 ```
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_density()` |
+| `geom_density()` properties | `fill`; `alpha` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p2 <- p1 +
   geom_density(fill = "steelblue", alpha = 0.3)
 
 p2
 ```
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p3 <- p2 +
@@ -211,6 +296,17 @@ p3
 You can stack layers in `ggplot2`. The same plot can include a histogram and a density curve.
 
 To put them on the same y-axis, tell the histogram to use density instead of counts.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+| Geoms / stats | `geom_histogram()`; `geom_density()` |
+| `geom_histogram()` properties | `fill`; `color` |
+| `geom_density()` properties | `color`; `linewidth` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(adult_bp, aes(x = systolic_mean)) +
@@ -251,6 +347,15 @@ simulated_people <- data.frame(
 
 If we plot everyone together, we can spot the bimodal shape.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x` |
+| Geoms / stats | `geom_histogram()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 ggplot(simulated_people, aes(x = measurement)) +
   geom_histogram(binwidth = 1, fill = "gray75", color = "white") +
@@ -263,6 +368,14 @@ ggplot(simulated_people, aes(x = measurement)) +
 ```
 
 Faceting by sex shows why the combined distribution has two peaks.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `facet_wrap()`; `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(simulated_people, aes(x = measurement)) +

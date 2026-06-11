@@ -38,6 +38,15 @@ nhanes |>
 
 # Prepare Dietary Data
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+| Choose or rename columns | `select()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 diet <- nhanes |>
   filter(!is.na(mean_daily_energy_kcal))
@@ -52,6 +61,14 @@ The dietary summaries are simple averages over available recall days. They are f
 # Summarize Spread
 
 Summaries can describe spread in a few numbers.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `summarize()`; `n()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 energy_summary <- diet |>
@@ -76,6 +93,14 @@ These summaries are useful, but they do not show the shape of the tails. That is
 
 Here, we'll calculate quartiles and IQR fences ourself. `ggplot2` will do this for us, but it's always useful to remember how these work.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `summarize()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 energy_cutoffs <- diet |>
   summarize(
@@ -91,6 +116,15 @@ energy_cutoffs
 
 We calculate two fences/cutoffs. For this question, we'll focus on the high end of values, so we flag only values above the upper cutoff.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Create or change columns | `mutate()` |
+| Count or summarize | `count()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 diet_flagged <- diet |>
   mutate(
@@ -100,6 +134,14 @@ diet_flagged <- diet |>
 diet_flagged |>
   count(high_energy_outlier)
 ```
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 diet_not_flagged <- diet_flagged |>
@@ -120,6 +162,16 @@ Points beyond those fences are drawn as outlier points.
 
 Flagged values are not automatically errors. Often they're perfectly natural results of the natural/social world.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+| Choose or rename columns | `select()` |
+| Sort rows | `arrange()`; `desc()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 diet_flagged |>
   filter(high_energy_outlier) |>
@@ -136,6 +188,16 @@ The box shows the middle 50% of the data. The line inside the box is the median.
 
 Start with a one-variable boxplot. There is no grouping variable here, so every participant is part of the same distribution.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `y` |
+| Geoms / stats | `geom_boxplot()` |
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 ggplot(
   diet,
@@ -151,6 +213,15 @@ ggplot(
 ```
 
 Now draw the 1.5 IQR upper fence that we calculated earlier. Everything above the red line is beyond the 1.5 IQR upper fence.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_boxplot()`; `geom_hline()` |
+| `geom_hline()` properties | `color`; `linewidth` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(
@@ -175,6 +246,15 @@ The line makes the math visible: `geom_boxplot()` is using the same kind of fenc
 
 We can also make grouped boxplots.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+| Geoms / stats | `geom_boxplot()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p1 <- ggplot(
   diet,
@@ -184,6 +264,14 @@ p1 <- ggplot(
 
 p1
 ```
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p2 <- p1 +
@@ -205,6 +293,14 @@ We can change that. A larger `coef` makes fewer points appear as outliers becaus
 
 First, calculate the 3.0 IQR fences from the same quartiles and IQR.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `summarize()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 energy_cutoffs_3 <- diet |>
   summarize(
@@ -219,6 +315,16 @@ energy_cutoffs_3
 ```
 
 Now set `coef = 3` in the one-variable boxplot and draw the 3.0 IQR upper fence.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `y` |
+| Geoms / stats | `geom_boxplot()`; `geom_hline()` |
+| `geom_hline()` properties | `color`; `linewidth` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(
@@ -239,6 +345,15 @@ ggplot(
   theme_minimal()
 ```
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+| Geoms / stats | `geom_boxplot()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 ggplot(
   diet,
@@ -256,6 +371,14 @@ ggplot(
 ## Change The Outlier Points
 
 We can also keep the default rule but change how the outlier points look.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| `geom_boxplot()` properties | `outlier.shape` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(
@@ -284,6 +407,19 @@ This helps us see how the full distribution looks instead of only seeing the poi
 In `ggplot2`, layer order matters. Layers added later are drawn on top of earlier layers.
 
 First, draw the boxplot and put the jittered points on top.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y`; `color` |
+| Geoms / stats | `geom_boxplot()`; `geom_jitter()` |
+| `geom_boxplot()` properties | `outlier.shape`; `fill`; `alpha` |
+| `geom_jitter()` properties (layer 1) | `color`; `width`; `alpha`; `size` |
+| `geom_jitter()` properties (layer 2) | `width`; `alpha`; `size` |
+| Scales / coordinates / facets / labels | `scale_color_manual()`; `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(
@@ -318,6 +454,14 @@ ggplot(
 ```
 
 Now reverse the order: draw the jittered points first and put the boxplot on top.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_jitter()`; `geom_boxplot()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(
@@ -361,6 +505,16 @@ When appropriate, we can show collaborators the rows behind the flagged values.
 
 Here we use the wider 3.0 IQR rule and arrange the table by the energy value.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+| Choose or rename columns | `select()` |
+| Sort rows | `arrange()`; `desc()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 energy_3_iqr_flagged <- diet |>
   filter(mean_daily_energy_kcal > energy_cutoffs_3$upper_cutoff) |>
@@ -387,6 +541,17 @@ Interactive tables can be useful for review, but use them carefully. Do not shar
 
 Violin plots use smoothing to show the shape of a distribution within each group. They let you see the distribution of a measure through the density, and get a better sense of the range/outliers through the boxplot.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+| Geoms / stats | `geom_violin()` |
+| `geom_violin()` properties | `fill`; `color` |
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 ggplot(
   diet,
@@ -402,6 +567,15 @@ ggplot(
 ```
 
 The violin plot makes the width of each distribution visible, but it hides the median and the middle 50% of values unless we add another layer.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_violin()`; `geom_boxplot()` |
+| `geom_boxplot()` properties | `width`; `outlier.shape`; `fill`; `color`; `linewidth` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(
@@ -425,6 +599,18 @@ ggplot(
 ```
 
 The boxplot layer adds the median and middle spread back onto the smoothed shape.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y`; `color` |
+| Geoms / stats | `geom_violin()`; `geom_jitter()` |
+| `geom_jitter()` properties (layer 1) | `color`; `width`; `alpha`; `size` |
+| `geom_jitter()` properties (layer 2) | `width`; `alpha`; `size` |
+| Scales / coordinates / facets / labels | `scale_color_manual()`; `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(

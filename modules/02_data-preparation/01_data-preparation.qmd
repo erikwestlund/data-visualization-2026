@@ -101,6 +101,15 @@ Use `filter()` to keep the observations that match the question.
 
 Here we keep adults with a non-missing systolic blood pressure value.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Inspect data | `glimpse()` |
+| Keep or remove rows | `filter()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 adult_bp <- bp_data |>
   filter(
@@ -116,6 +125,14 @@ adult_bp |>
 
 Use `count()` to check categorical variables before plotting or grouping.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `count()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 adult_bp |>
   count(age_group, sort = TRUE)
@@ -129,6 +146,14 @@ table(adult_bp$age_group)
 
 Gender:
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `count()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 adult_bp |>
   count(gender, sort = TRUE)
@@ -137,6 +162,15 @@ adult_bp |>
 # Create Or Recode Variables
 
 Use `mutate()` for new variables or recoded categories.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Choose or rename columns | `select()` |
+| Create or change columns | `mutate()`; `case_when()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 clean_data <- adult_bp |>
@@ -166,6 +200,15 @@ clean_data |>
 
 Use `arrange()` to inspect records at the high or low end of a variable.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Choose or rename columns | `select()` |
+| Sort rows | `arrange()`; `desc()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 clean_data |>
   arrange(desc(systolic_mean)) |>
@@ -178,6 +221,14 @@ Sorting does not change the data. It helps us inspect the rows behind summaries 
 # Summarize The Whole Table
 
 Use `summarize()` when you want one row of summary values.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `summarize()`; `n()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 clean_data |>
@@ -196,6 +247,15 @@ clean_data |>
 # Summarize By Group
 
 Use `group_by()` before `summarize()` when you want one summary row per group.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `group_by()`; `summarize()`; `n()` |
+| Sort rows | `arrange()`; `desc()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 gender_summary <- clean_data |>
@@ -242,6 +302,14 @@ If we do nothing, `ggplot2` often uses alphabetical order for character categori
 
 Blood pressure groups have a natural order from lower to higher. We should preserve that order instead of sorting alphabetically or by count.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Create or change columns | `mutate()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 clean_data <- clean_data |>
   mutate(
@@ -263,6 +331,16 @@ The `levels` argument gives the factor its order.
 
 For a simple count plot, `ggplot2` can count rows for us. This is the default behavior of `geom_bar()`.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x` |
+| Geoms / stats | `geom_bar()` |
+| Scales / coordinates / facets / labels | `coord_flip()`; `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 ggplot(clean_data, aes(x = systolic_group)) +
   geom_bar() +
@@ -281,6 +359,14 @@ This is convenient when the transformation is simple, but the count table is hid
 
 Instead of asking `ggplot2` to count rows inside the plot, we can do the transformation ourselves and check the table before plotting.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `count()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 plot_data <- clean_data |>
   count(systolic_group)
@@ -289,6 +375,14 @@ plot_data
 ```
 
 Now `stat = "identity"` tells `geom_bar()` to use the `n` values already in `plot_data`. As you get more comfortable, you may use this explicit pattern more often.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 ggplot(plot_data, aes(x = systolic_group, y = n)) +

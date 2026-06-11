@@ -16,8 +16,6 @@ library(ggplot2)
 
 Practice creating quantile summaries, QQ plots, and transformed displays.
 
-Most of the code is already complete. Study the output, then make one small change at a time.
-
 # 1. Load Data
 
 ```{r}

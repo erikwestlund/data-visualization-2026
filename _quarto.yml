@@ -10,3 +10,4 @@ format:
     toc-depth: 3
     embed-resources: true
     highlight-style: github
+    css: styles.css

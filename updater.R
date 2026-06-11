@@ -46,7 +46,18 @@ copy_local_changes_to_backup <- function(project_root, status_lines, backup_dir)
     }
 
     dir.create(dirname(destination_path), recursive = TRUE, showWarnings = FALSE)
-    ok <- file.copy(source_path, destination_path, overwrite = TRUE, recursive = TRUE, copy.date = TRUE)
+
+    if (dir.exists(source_path)) {
+      ok <- file.copy(
+        source_path,
+        dirname(destination_path),
+        overwrite = TRUE,
+        recursive = TRUE,
+        copy.date = TRUE
+      )
+    } else {
+      ok <- file.copy(source_path, destination_path, overwrite = TRUE, copy.date = TRUE)
+    }
 
     if (isTRUE(ok)) {
       copied <- c(copied, relative_path)

@@ -63,6 +63,14 @@ Visualization starts before the first plot. First, use tables to understand what
 
 **How many records are in the file, how many locations are represented, and how many subgroup categories are included?**
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `summarize()`; `n()`; `n_distinct()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 prams |>
   summarize(
@@ -74,6 +82,14 @@ prams |>
 
 **Which subgroup categories appear in the file?**
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `count()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 subgroup_counts <- prams |>
   count(subgroup_cat, sort = TRUE)
@@ -82,6 +98,14 @@ subgroup_counts
 ```
 
 **How many estimates does each location contribute?**
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `count()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 prams |>
@@ -92,6 +116,15 @@ prams |>
 Each location appears many times because the file includes overall estimates and subgroup estimates. A plot of all records would mix those levels together.
 
 The `None` subgroup category gives the overall estimate for each location. That is the right level for a first state/location comparison.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+| Choose or rename columns | `select()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 prams_overall <- prams |>
@@ -117,6 +150,15 @@ Question: what is the distribution of reported binge drinking in the 3 months be
 
 For this first plot, use the overall location estimates. That way each plotted observation represents one state/location, not a subgroup slice.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+| Choose or rename columns | `select()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 prams_binge <- prams_overall |>
   filter(!is.na(binge_drinking_within_3_months_birth))
@@ -136,6 +178,14 @@ p1
 
 Add an aesthetic mapping.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p2 <- ggplot(
   data = prams_binge,
@@ -147,6 +197,14 @@ p2
 
 Add a geom.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_histogram()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p3 <- p2 +
   geom_histogram(binwidth = 5)
@@ -155,6 +213,14 @@ p3
 ```
 
 Add labels.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `labs()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p4 <- p3 +
@@ -169,6 +235,14 @@ p4
 ```
 
 Add a theme.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p5 <- p4 +
@@ -185,6 +259,15 @@ Question: which states or locations have higher overall reported binge drinking 
 
 First, make a small table for the comparison.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Choose or rename columns | `select()` |
+| Sort rows | `arrange()`; `desc()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 prams_binge_ordered <- prams_binge |>
   arrange(desc(binge_drinking_within_3_months_birth)) |>
@@ -195,6 +278,22 @@ prams_binge_ordered |>
 ```
 
 Start with the ordered data and mappings.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Create or change columns | `mutate()` |
+:::
+<!-- data-prep-anatomy-end -->
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 prams_binge_ordered <- prams_binge_ordered |>
@@ -210,6 +309,14 @@ p1
 
 Use `geom_col()` because the bar height is already in the data.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_col()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p2 <- p1 +
   geom_col()
@@ -219,6 +326,14 @@ p2
 
 Flip the coordinates so the location names are readable.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `coord_flip()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p3 <- p2 +
   coord_flip()
@@ -227,6 +342,14 @@ p3
 ```
 
 Add labels and a theme.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p4 <- p3 +
@@ -249,6 +372,15 @@ Question: how are reported alcohol use and binge drinking related?
 
 Use the same overall location estimates, then filter to places where both measures are observed.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Keep or remove rows | `filter()` |
+| Choose or rename columns | `select()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 prams_alcohol <- prams_overall |>
   filter(
@@ -268,6 +400,14 @@ prams_alcohol |>
 
 Start with data and mappings.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p1 <- ggplot(
   prams_alcohol,
@@ -282,6 +422,14 @@ p1
 
 Add points.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_point()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p2 <- p1 +
   geom_point()
@@ -290,6 +438,14 @@ p2
 ```
 
 Add transparency so overlapping points are easier to see.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| `geom_point()` properties | `alpha` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p3 <- p1 +
@@ -300,6 +456,15 @@ p3
 
 Add a trend line.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_smooth()` |
+| `geom_smooth()` properties | `method = "lm"`; `se` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p4 <- p3 +
   geom_smooth(method = "lm", se = FALSE)
@@ -308,6 +473,14 @@ p4
 ```
 
 Add labels and a theme.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p5 <- p4 +
@@ -327,6 +500,15 @@ State/location estimates with higher reported alcohol use tend to have higher re
 # Create A Flag Before Plotting
 
 Sometimes the variable we want to plot is not already in the data. Here, we can mark which locations are above the median binge-drinking estimate.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Choose or rename columns | `select()` |
+| Create or change columns | `mutate()`; `if_else()` |
+:::
+<!-- data-prep-anatomy-end -->
 
 ```{r}
 binge_median <- median(prams_binge$binge_drinking_within_3_months_birth)
@@ -348,6 +530,14 @@ prams_binge_flagged |>
 
 Build a plot that uses the new flag for highlighting.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y`; `fill` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p1 <- ggplot(
   prams_binge_flagged,
@@ -361,6 +551,14 @@ p1 <- ggplot(
 p1
 ```
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_col()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p2 <- p1 +
   geom_col()
@@ -368,12 +566,28 @@ p2 <- p1 +
 p2
 ```
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `coord_flip()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p3 <- p2 +
   coord_flip()
 
 p3
 ```
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `scale_fill_manual()`; `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p4 <- p3 +

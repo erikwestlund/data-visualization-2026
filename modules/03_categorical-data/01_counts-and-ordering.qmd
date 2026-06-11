@@ -43,6 +43,14 @@ Here, "included" means the race/ethnicity categories present in this teaching fi
 
 Before plotting, use a small table to check the structure of the file.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `summarize()`; `n()`; `n_distinct()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 census |>
   summarize(
@@ -67,6 +75,14 @@ census |>
 
 First, count how many rows appear for each race/ethnicity category.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `count()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 category_counts <- census |>
   count(race_ethnicity, sort = TRUE)
@@ -88,6 +104,15 @@ A categorical summary that better matches the question is total included populat
 
 This is aggregation: `group_by()` defines the groups, and `summarize()` reduces many state-category observations into one value per category.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Count or summarize | `group_by()`; `summarize()` |
+| Sort rows | `arrange()`; `desc()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 category_population <- census |>
   group_by(race_ethnicity) |>
@@ -104,6 +129,14 @@ The `.groups = "drop"` line tells `summarize()` to return an ordinary ungrouped 
 
 Now each summarized observation is one race/ethnicity category.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p1 <- ggplot(
   category_population,
@@ -112,6 +145,14 @@ p1 <- ggplot(
 
 p1
 ```
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_bar()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p2 <- p1 +
@@ -125,6 +166,22 @@ p2
 The labels are hard to read, and alphabetical order does not help answer the ranking question.
 
 Reorder by total population. This uses `mutate()` to change the category order before plotting.
+
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Create or change columns | `mutate()` |
+:::
+<!-- data-prep-anatomy-end -->
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 category_population_ordered <- category_population |>
@@ -141,6 +198,14 @@ p3
 
 Flip the coordinates so the category labels are readable.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `coord_flip()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p4 <- p3 +
   coord_flip()
@@ -149,6 +214,14 @@ p4
 ```
 
 Add labels and a theme.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p5 <- p4 +
@@ -163,12 +236,19 @@ p5 <- p4 +
 p5
 ```
 
-
 # Different Geom, Same Information: Lollipop Plots
 
 Bars are common for counts and totals, but they can get visually heavy when there are many categories.
 
 A lollipop plot keeps the same position-on-a-common-scale comparison, but uses less ink.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `y` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p1 <- ggplot(
@@ -180,6 +260,15 @@ p1
 ```
 
 Add the stems. Each stem runs from zero to the category total.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `xend`; `yend` |
+| Geoms / stats | `geom_segment()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p2 <- p1 +
@@ -196,6 +285,16 @@ p2
 
 Add points at the values.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x` |
+| Geoms / stats | `geom_point()` |
+| `geom_point()` properties | `size` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 p3 <- p2 +
   geom_point(aes(x = total_population), size = 3)
@@ -204,6 +303,14 @@ p3
 ```
 
 Add labels and a theme.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Scales / coordinates / facets / labels | `labs()`; `theme_minimal()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 p4 <- p3 +
@@ -224,6 +331,16 @@ The lollipop pattern is especially useful when there are many categories.
 
 Here is one summarized row per state.
 
+<!-- data-prep-anatomy-start -->
+::: {.data-prep-anatomy}
+| Data preparation step | Functions in this chunk |
+|---|---|
+| Create or change columns | `mutate()` |
+| Count or summarize | `group_by()`; `summarize()` |
+| Sort rows | `arrange()`; `desc()` |
+:::
+<!-- data-prep-anatomy-end -->
+
 ```{r}
 state_population <- census |>
   group_by(state_name) |>
@@ -241,6 +358,16 @@ state_population |>
 A bar plot with all 51 states works, but the repeated filled rectangles dominate the figure.
 
 The population values are large, so we also format the axis labels in millions. `scale_y_continuous()` sets the tick locations with `breaks` and changes how those ticks are printed with `labels`.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `x`; `y` |
+| Geoms / stats | `geom_bar()` |
+| Scales / coordinates / facets / labels | `coord_flip()`; `scale_y_continuous()`; `labs()`; `theme_minimal()`; `theme()` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 #| fig-width: 8
@@ -268,6 +395,16 @@ This is basically a bar plot with less visual weight. For many-category rankings
 
 After `coord_flip()`, the population axis is the x-axis, so this plot uses `scale_x_continuous()` for the same label formatting.
 
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Aesthetic mappings | `y`; `x`; `xend`; `yend` |
+| Geoms / stats | `geom_segment()` |
+| Scales / coordinates / facets / labels | `scale_x_continuous()`; `labs()`; `theme_minimal()`; `theme()` |
+:::
+<!-- plot-anatomy-end -->
+
 ```{r}
 #| fig-width: 8
 #| fig-height: 8
@@ -294,6 +431,15 @@ ggplot(state_population, aes(y = state_name)) +
 ```
 
 Adding points at the ends gives a lollipop plot. The points emphasize the exact values.
+
+<!-- plot-anatomy-start -->
+::: {.plot-anatomy}
+| Plot component | Code in this chunk |
+|---|---|
+| Geoms / stats | `geom_segment()`; `geom_point()` |
+| `geom_point()` properties | `size` |
+:::
+<!-- plot-anatomy-end -->
 
 ```{r}
 #| fig-width: 8
