@@ -116,7 +116,7 @@ p2 <- p1 +
     aes(label = country_label),
     color = "gray15",
     segment.color = NA,
-    seed = 123,
+    seed = 500,
     size = 3.5,
     min.segment.length = 0
   )
@@ -151,7 +151,7 @@ united_states <- infant_mortality |>
 p3 <- p2 +
   annotate(
     geom = "segment",
-    x = 3800,
+    x = 4000,
     xend = united_states$income_usd_per_capita,
     y = 80,
     yend = united_states$infant_mortality_per_1000,
@@ -160,8 +160,8 @@ p3 <- p2 +
   ) +
   annotate(
     geom = "text",
-    x = 3700,
-    y = 82,
+    x = 5200,
+    y = 95,
     label = "United States",
     hjust = 1,
     color = "gray15",
@@ -209,9 +209,9 @@ p2 +
   annotate(
     geom = "curve",
     x = 1200,
-    xend = papua_new_guinea$income_usd_per_capita,
+    xend = papua_new_guinea$income_usd_per_capita + 15,
     y = 95,
-    yend = papua_new_guinea$infant_mortality_per_1000,
+    yend = papua_new_guinea$infant_mortality_per_1000 + 10,
     curvature = 0.25,
     arrow = arrow(length = grid::unit(0.02, "npc")),
     color = "firebrick"

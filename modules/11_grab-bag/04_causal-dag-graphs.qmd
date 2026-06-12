@@ -121,7 +121,7 @@ coordinates(bp_dag) <- list(
     Age = 2,
     Income = 1,
     Diet = 0,
-    Exercise = 1.2,
+    Exercise = 0.5,
     Weight = 1.7,
     ClinicVisit = 0.3,
     BloodPressure = 1
