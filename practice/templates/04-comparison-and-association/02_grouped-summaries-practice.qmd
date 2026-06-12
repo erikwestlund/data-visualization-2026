@@ -80,7 +80,7 @@ Try adding `sd_estimate = sd(estimate)`.
 This dot plot shows one summary value per state.
 
 ```{r}
-ggplot(
+p <- ggplot(
   state_obesity,
   aes(x = state_name, y = mean_estimate)
 ) +
@@ -92,6 +92,8 @@ ggplot(
     y = "Mean county estimate (%)"
   ) +
   theme_minimal()
+
+ggsave("~/Desktop/obesity.png", p, width=10, height=8)
 ```
 
 Try changing `mean_estimate` to `median_estimate` in the plot.

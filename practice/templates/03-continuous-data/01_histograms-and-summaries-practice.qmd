@@ -32,7 +32,8 @@ This keeps participants with a non-missing measured height value.
 
 ```{r}
 height_data <- davis |>
-  filter(!is.na(height_cm))
+  filter(!is.na(height_cm)) |>
+  filter(sex == "female")
 
 height_data |>
   select(participant_id, sex, height_cm, weight_kg, measured_bmi) |>

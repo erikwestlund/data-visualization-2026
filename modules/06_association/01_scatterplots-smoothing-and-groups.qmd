@@ -143,7 +143,7 @@ p2 <- p1 +
     title = "Income And Infant Mortality Across Countries",
     x = "Per-capita income, U.S. dollars, log scale",
     y = "Infant mortality per 1,000 live births"
-  ) +
+  )
   theme_minimal()
 
 p2
